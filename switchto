@@ -1,0 +1,29 @@
+#!/bin/bash
+if [ "$1" == "gnome-mobile" ]; then
+echo "switching to gnome-mobile in 3 sec"
+sleep 3
+sudo apk add postmarketos-ui-gnome-mobile
+echo deleting phosh in 5 sec.
+sleep 5
+sudo apk del postmarketos-ui-phosh
+sudo reboot
+elif [ "$1" == "phosh" ]; then
+echo "switching to phosh in 3 sec"
+sleep 3
+sudo apk add postmarketos-ui-phosh
+echo deleting gnome-mobile in 5 sec.
+sleep 5
+sudo apk del postmarketos-ui-gnome-mobile
+sudo apk add postmarketos-ui-phosh
+sudo apk add gnome-backgrounds
+sudo reboot
+elif [ "$1" == "install" ]; then
+sudo cp ./switchto /usr/bin
+elif [ "$1" == "android" ]; then
+echo 1 | sudo -S qbootctl -s a
+echo 1 | sudo -S reboot
+else
+echo "avialible DE is: gnome-mobile and phosh"
+echo "please type switchto [DE]"
+fi
+exit
